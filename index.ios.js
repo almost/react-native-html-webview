@@ -85,7 +85,7 @@ module.exports.HTML_SAFE_CONFIG = _.defaults(
         id: {allTags: true},
         style: {allTags: true},
         src: {allowedTags: ["img"]}
-      }, safeHtml.DEFAULT_CONFIG)
+      }, safeHtml.DEFAULT_CONFIG.allowedAttributes)
   },
   safeHtml.DEFAULT_CONFIG
 );

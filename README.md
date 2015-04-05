@@ -60,11 +60,11 @@ var testView = React.createClass({
 
 - **html** : The html content to display as a string
 - **makeSafe** (default: true) : Run the HTML through an HTML
-    sanitizer ([html-safe](http://github.com/almost/safe-html)) before
+    sanitizer ([safe-html](http://github.com/almost/safe-html)) before
     inserting it to remove script tags and similar unsafe things. Pass
-    in `true` to use the default options for html-safe, pass in
+    in `true` to use the default options for safe-html, pass in
     `false` to turn it off, or pass in an object to set config options
-    for html-safe.
+    for safe-html.
 - **autoHeight** (default: false) : Automatically adjust the height of
     the webview to fit the contents (also turns off scrolling).
 - **onLink** : Pass in a function to be called when the user clicks a
@@ -74,7 +74,7 @@ var testView = React.createClass({
 
 This relies on HTML sanitization to protect you from executing
 JavaScript included in untrusted HTML. It's using my
-[html-safe](https://www.npmjs.com/package/safe-html) library which
+[safe-html](https://www.npmjs.com/package/safe-html) library which
 works based on a whitelist of allowed tags but it's still possbile
 someone could find a way round it.
 
