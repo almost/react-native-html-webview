@@ -2,6 +2,11 @@
 
 Display (possibly untrusted) HTML using a UIWebView in React Native.
 
+Uses an HTML Sanitizer to remove only let through a whitelist of tags
+and attributes (so it removes all javascript). Also supports
+automatically adjusting the height of the webview to contain the
+contents you give it.
+
 Written by Thomas Parslow
 ([almostobsolete.net](http://almostobsolete.net) and
 [tomparslow.co.uk](http://tomparslow.co.uk)) as part of Active Inbox
