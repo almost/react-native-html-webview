@@ -1,0 +1,31 @@
+{
+  "name": "react-native-html-webview",
+  "version": "0.0.1",
+  "description": "Display (possibly untrusted) HTML using a UIWebView in React Native.",
+  "main": "index.ios.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/almost/react-native-html-webview.git"
+  },
+  "keywords": [
+    "react-component",
+    "reactnative",
+    "react-native",
+    "react",
+    "html",
+    "ios"
+  ],
+  "author": "Thomas Parslow",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/almost/react-native-html-webview/issues"
+  },
+  "homepage": "https://github.com/almost/react-native-html-webview",
+  "dependencies": {
+    "react-native": "^0.3.4",
+    "safe-html": "0.0.1"
+  }
+}
