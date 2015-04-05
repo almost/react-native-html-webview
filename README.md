@@ -65,6 +65,20 @@ var testView = React.createClass({
 - **onLink** : Pass in a function to be called when the user clicks a
     link, the function will be given the href.
 
+## Security Warning
+
+This relies on HTML sanitization to protect you from executing
+JavaScript included in untrusted HTML. It's using my
+[html-safe](https://www.npmjs.com/package/safe-html) library which
+works based on a whitelist of allowed tags but it's still possbile
+someone could find a way round it.
+
+If an attacker *did* find a way round the sanitizer they'd still only
+be running JavaScript inside a WebView. So they wouldn't automatically
+get access to the rest of your app, but they would be able to load
+other stuff into the webview and possibly other stuff that you may not
+want.
+
 ## Feedback Welcome!
 
 Feedback, questions, suggestions and most of all Pull Requests are
