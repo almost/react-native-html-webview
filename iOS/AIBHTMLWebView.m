@@ -65,7 +65,7 @@
 
 #pragma mark - UIWebViewDelegate methods
 
-- (BOOL)webView:(UIWebView *)webView :(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if ([[request.URL scheme] isEqual:@"file"] && navigationType==UIWebViewNavigationTypeOther) {
         // When we load from HTML string it still shows up as a request, so let's let that through
         return YES;
