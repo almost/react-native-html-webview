@@ -37,7 +37,6 @@ var HTMLWebView = React.createClass({
   },
 
   render: function () {
-    console.log(this.state.contentHeight);
     return (
         <_HTMLWebView
           style={[{height: this.state.contentHeight}, this.props.style]}
