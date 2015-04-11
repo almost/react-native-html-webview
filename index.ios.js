@@ -48,7 +48,7 @@ var HTMLWebView = React.createClass({
     );
   },
 
-  safeHtml: function (html: string) {
+  safeHtml: function (html) {
     var config = this.props.makeSafe;
     if (config === false) {
       // saveHtml disabled
