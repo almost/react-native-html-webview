@@ -30,6 +30,10 @@ var HTMLWebView = React.createClass({
     autoHeight: PropTypes.bool
   },
 
+  shouldComponentUpdate: function (nextProps, nextState) {
+    return !_.isEqual(nextProps, this.props) || !_.isEqual(nextState, this.state);
+  },
+
   getInitialState: function() {
     return {
       contentHeight: 1
@@ -37,10 +41,18 @@ var HTMLWebView = React.createClass({
   },
 
   render: function () {
+    // Don't do the expensive safeHtml operation more often than
+    // needed. This is assume you don't mutate and reuse the same
+    // makeSafe config object, please don't do that.
+    if (this._currentHtml !== this.props.html || !_.isEqual(this._currentMakeSafe, this.props.makeSafe)) {
+      this._currentHtml = this.props.html;
+      this._currentMakeSafe = this.props.makeSafe;
+      this._safeHtml = this.safeHtml(this._currentHtml);
+    }
     return (
         <_HTMLWebView
           style={[{height: this.state.contentHeight}, this.props.style]}
-          html={this.safeHtml(this.props.html)}
+          html={this._safeHtml}
           enableScroll={!this.props.autoHeight}
           onLink={this.onLink}
           onContentHeight={this.onContentHeight}
