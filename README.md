@@ -43,7 +43,7 @@ var testView = React.createClass({
       <View>
         <HTMLWebView
             style={{width: 300}}
-            html={this.state.htmlContnets}
+            html={this.state.htmlContents}
             makeSafe={true}
             autoHeight={true}
             onLink={this.onLink}/>
