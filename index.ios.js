@@ -30,6 +30,8 @@ var HTMLWebView = React.createClass({
     autoHeight: PropTypes.bool
   },
 
+
+
   shouldComponentUpdate: function (nextProps, nextState) {
     return !_.isEqual(nextProps, this.props) || !_.isEqual(nextState, this.state);
   },
@@ -49,14 +51,19 @@ var HTMLWebView = React.createClass({
       this._currentMakeSafe = this.props.makeSafe;
       this._safeHtml = this.safeHtml(this._currentHtml);
     }
+    var updateContentHeight = _.throttle(this.onContentHeight, 100);
     return (
         <_HTMLWebView
           style={[{height: this.state.contentHeight}, this.props.style]}
           html={this._safeHtml}
           enableScroll={!this.props.autoHeight}
           onLink={this.onLink}
-          onContentHeight={this.onContentHeight}
-        />
+          onContentHeight={(e) => {
+            this.contentHeight = e.nativeEvent.contentHeight;
+            if (this.props.autoHeight && this.contentHeight > 1) {
+              updateContentHeight();
+            }
+          }} />
     );
   },
 
@@ -77,9 +84,9 @@ var HTMLWebView = React.createClass({
     }
   },
 
-  onContentHeight: function (e) {
-    if (e.nativeEvent.contentHeight > 1 && this.props.autoHeight && e.nativeEvent.contentHeight !== this.state.contentHeight) {
-      this.setState({contentHeight: e.nativeEvent.contentHeight});
+  onContentHeight: function () {
+    if (this.contentHeight !== this.state.contentHeight) {
+      this.setState({contentHeight: this.contentHeight});
     }
   }
 });
