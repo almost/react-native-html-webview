@@ -1,6 +1,6 @@
 {
   "name": "react-native-html-webview",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Display (possibly untrusted) HTML using a UIWebView in React Native.",
   "main": "index.ios.js",
   "scripts": {
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/almost/react-native-html-webview",
   "peerDepenencies": {
-    "react-native": "^0.4.1"
+    "react-native": "^0.4.4"
   },
   "dependencies": {
     "safe-html": "0.0.2"

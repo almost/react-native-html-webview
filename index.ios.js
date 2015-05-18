@@ -5,19 +5,24 @@
 var React = require('react-native');
 var {
   View,
-  PropTypes
+  PropTypes,
+  requireNativeComponent
 } = React;
 
 var safeHtml = require('safe-html');
 var _ = require('underscore');
 
-var createReactIOSNativeComponentClass = require('createReactIOSNativeComponentClass');
 
-var _HTMLWebView = createReactIOSNativeComponentClass({
-  validAttributes: {html: true, enableScroll: true},
-  uiViewClassName: 'AIBHTMLWebView'
-})
-
+var _HTMLWebView = React.createClass({
+  propTypes: {
+    html: PropTypes.string,
+    enableScroll: PropTypes.bool
+  },
+  render: function () {
+    return <NativeHTMLWebView {...this.props}/>;
+  }
+});
+var NativeHTMLWebView = requireNativeComponent('AIBHTMLWebView', _HTMLWebView);
 
 var HTMLWebView = React.createClass({
   propTypes: {
@@ -29,8 +34,6 @@ var HTMLWebView = React.createClass({
     // complete content
     autoHeight: PropTypes.bool
   },
-
-
 
   shouldComponentUpdate: function (nextProps, nextState) {
     return !_.isEqual(nextProps, this.props) || !_.isEqual(nextState, this.state);
@@ -90,6 +93,8 @@ var HTMLWebView = React.createClass({
     }
   }
 });
+
+
 
 module.exports = HTMLWebView;
 
