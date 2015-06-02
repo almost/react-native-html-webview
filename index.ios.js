@@ -35,6 +35,10 @@ var HTMLWebView = React.createClass({
     autoHeight: PropTypes.bool
   },
 
+  componentWillMount: function () {
+    this.onContentHeight = _.throttle(this.onContentHeight, 300);
+  },
+
   shouldComponentUpdate: function (nextProps, nextState) {
     return !_.isEqual(nextProps, this.props) || !_.isEqual(nextState, this.state);
   },
@@ -54,7 +58,6 @@ var HTMLWebView = React.createClass({
       this._currentMakeSafe = this.props.makeSafe;
       this._safeHtml = this.safeHtml(this._currentHtml);
     }
-    var updateContentHeight = _.throttle(this.onContentHeight, 100);
     return (
         <_HTMLWebView
           style={[{height: this.state.contentHeight}, this.props.style]}
@@ -64,7 +67,7 @@ var HTMLWebView = React.createClass({
           onContentHeight={(e) => {
             this.contentHeight = e.nativeEvent.contentHeight;
             if (this.props.autoHeight && this.contentHeight > 1) {
-              updateContentHeight();
+              this.onContentHeight();
             }
           }} />
     );
