@@ -16,7 +16,7 @@ var _ = require('underscore');
 var _HTMLWebView = React.createClass({
   propTypes: {
     html: PropTypes.string,
-    enableScroll: PropTypes.bool
+    autoHeight: PropTypes.bool
   },
   render: function () {
     return <NativeHTMLWebView {...this.props}/>;
@@ -36,7 +36,7 @@ var HTMLWebView = React.createClass({
   },
 
   componentWillMount: function () {
-    this.onContentHeight = _.throttle(this.onContentHeight, 300);
+    this.onChangeHeight = _.throttle(this.onChangeHeight, 300);
   },
 
   shouldComponentUpdate: function (nextProps, nextState) {
@@ -62,12 +62,12 @@ var HTMLWebView = React.createClass({
         <_HTMLWebView
           style={[{height: this.state.contentHeight}, this.props.style]}
           html={this._safeHtml}
-          enableScroll={!this.props.autoHeight}
+          autoHeight={this.props.autoHeight}
           onLink={this.onLink}
-          onContentHeight={(e) => {
+          onChangeHeight={(e) => {
             this.contentHeight = e.nativeEvent.contentHeight;
             if (this.props.autoHeight && this.contentHeight > 1) {
-              this.onContentHeight();
+              this.onChangeHeight();
             }
           }} />
     );
@@ -90,7 +90,7 @@ var HTMLWebView = React.createClass({
     }
   },
 
-  onContentHeight: function () {
+  onChangeHeight: function () {
     if (this.contentHeight !== this.state.contentHeight) {
       this.setState({contentHeight: this.contentHeight});
     }

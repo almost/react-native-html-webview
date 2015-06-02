@@ -17,7 +17,7 @@
 RCT_EXPORT_MODULE();
 
 RCT_REMAP_VIEW_PROPERTY(html, HTML, NSString)
-RCT_EXPORT_VIEW_PROPERTY(enableScroll, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(autoHeight, BOOL)
 
 - (UIView *)view
 {
@@ -32,8 +32,8 @@ RCT_EXPORT_VIEW_PROPERTY(enableScroll, BOOL)
              @"link": @{
                      @"registrationName": @"onLink"
                      },
-             @"contentHeight": @{
-                     @"registrationName": @"onContentHeight"
+             @"changeHeight": @{
+                     @"registrationName": @"onChangeHeight"
                      }
              };
 }

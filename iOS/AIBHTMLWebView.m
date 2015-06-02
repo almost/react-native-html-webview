@@ -21,6 +21,7 @@
 {
     RCTEventDispatcher *_eventDispatcher;
     UIWebView *_webView;
+    BOOL autoHeight;
 }
 
 - (void)setHTML:(NSString *)HTML
@@ -30,9 +31,10 @@
     [self reportHeight];
 }
 
-- (void)setEnableScroll:(BOOL) enable
+- (void)setAutoHeight:(BOOL) enable
 {
-    _webView.scrollView.scrollEnabled = enable;
+    _webView.scrollView.scrollEnabled = !enable;
+    autoHeight = enable;
 }
 
 - (instancetype)initWithEventDispatcher:(RCTEventDispatcher *)eventDispatcher
@@ -42,6 +44,7 @@
         _webView = [[UIWebView alloc] initWithFrame:self.bounds];
         _webView.delegate = self;
         [self addSubview:_webView];
+        autoHeight = false;
     }
     return self;
 }
@@ -55,12 +58,21 @@
 
 - (void)reportHeight
 {
-    NSNumber *height =[NSNumber numberWithFloat: _webView.scrollView.contentSize.height];
+    if (!autoHeight) {
+        return;
+    }
+    CGRect frame = _webView.frame;
+    frame.size.height = 1;
+    _webView.frame = frame;
+    frame.size.height = [[_webView stringByEvaluatingJavaScriptFromString: @"document.documentElement.scrollHeight"] floatValue];
+    NSNumber *height = [NSNumber numberWithFloat: frame.size.height];
+    
     NSMutableDictionary *event = [[NSMutableDictionary alloc] initWithDictionary: @{
                                                                                     @"target": self.reactTag,
                                                                                     @"contentHeight": height
                                                                                     }];
-    [_eventDispatcher sendInputEventWithName:@"contentHeight" body:event];
+    [_eventDispatcher sendInputEventWithName:@"changeHeight" body:event];
+    _webView.frame = frame;
 }
 
 #pragma mark - UIWebViewDelegate methods
