@@ -35,10 +35,6 @@ var HTMLWebView = React.createClass({
     autoHeight: PropTypes.bool
   },
 
-  componentWillMount: function () {
-    this.onChangeHeight = _.throttle(this.onChangeHeight, 300);
-  },
-
   shouldComponentUpdate: function (nextProps, nextState) {
     return !_.isEqual(nextProps, this.props) || !_.isEqual(nextState, this.state);
   },
