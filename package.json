@@ -28,6 +28,7 @@
     "react-native": "^0.4.4"
   },
   "dependencies": {
-    "safe-html": "0.0.5"
+    "safe-html": "0.0.5",
+    "underscore": "^1.8.3"
   }
 }
