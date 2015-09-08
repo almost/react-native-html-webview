@@ -18,6 +18,7 @@ RCT_EXPORT_MODULE();
 
 RCT_REMAP_VIEW_PROPERTY(html, HTML, NSString)
 RCT_EXPORT_VIEW_PROPERTY(autoHeight, BOOL)
+RCT_EXPORT_VIEW_PROPERTY(disableScroll, BOOL)
 
 - (UIView *)view
 {
@@ -26,16 +27,12 @@ RCT_EXPORT_VIEW_PROPERTY(autoHeight, BOOL)
     return _view;
 }
 
-- (NSDictionary *)customDirectEventTypes
+- (NSArray *)customDirectEventTypes
 {
-    return @{
-             @"link": @{
-                     @"registrationName": @"onLink"
-                     },
-             @"changeHeight": @{
-                     @"registrationName": @"onChangeHeight"
-                     }
-             };
+    return @[
+             @"link",
+             @"changeHeight",
+            ];
 }
 
 @end

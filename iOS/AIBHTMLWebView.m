@@ -37,6 +37,7 @@
     autoHeight = enable;
 }
 
+
 - (instancetype)initWithEventDispatcher:(RCTEventDispatcher *)eventDispatcher
 {
     if ((self = [super initWithFrame:CGRectZero])) {
