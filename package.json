@@ -1,6 +1,6 @@
 {
   "name": "react-native-html-webview",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Display (possibly untrusted) HTML using a UIWebView in React Native.",
   "main": "index.ios.js",
   "scripts": {
