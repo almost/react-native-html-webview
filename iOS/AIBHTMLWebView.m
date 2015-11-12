@@ -41,6 +41,7 @@
 - (instancetype)initWithEventDispatcher:(RCTEventDispatcher *)eventDispatcher
 {
     if ((self = [super initWithFrame:CGRectZero])) {
+        super.backgroundColor = [UIColor clearColor];
         _eventDispatcher = eventDispatcher;
         _webView = [[UIWebView alloc] initWithFrame:self.bounds];
         _webView.delegate = self;
@@ -55,6 +56,18 @@
     [super layoutSubviews];
     _webView.frame = self.bounds;
     [self reportHeight];
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor
+{
+    CGFloat alpha = CGColorGetAlpha(backgroundColor.CGColor);
+    self.opaque = _webView.opaque = (alpha == 1.0);
+    _webView.backgroundColor = backgroundColor;
+}
+
+- (UIColor *)backgroundColor
+{
+    return _webView.backgroundColor;
 }
 
 - (void)reportHeight
