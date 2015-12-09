@@ -27,7 +27,7 @@ var NativeHTMLWebView = requireNativeComponent('AIBHTMLWebView', _HTMLWebView);
 var HTMLWebView = React.createClass({
   propTypes: {
     html: PropTypes.string.isRequired,
-    makeSafe: PropTypes.oneOfType([PropTypes.object, PropTypes.boolean]),
+    makeSafe: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
     onLink: PropTypes.func,
     style: View.propTypes.style,
     // Should this view adjust its height automatically to show its
