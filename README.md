@@ -1,3 +1,5 @@
+NOTE: There's not much point to this component now the built in WebView has more features
+
 # react-native-html-webview
 
 Display (possibly untrusted) HTML using a UIWebView in React Native.
