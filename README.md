@@ -1,4 +1,4 @@
-NOTE: There's not much point to this component now the built in WebView has more features
+NOTE: There's not much point to this component now the built in WebView has more features. You might want to check out my ([safe-html](http://github.com/almost/safe-html)) library though if you want to make your untrusted HTML safe.
 
 # react-native-html-webview
 
