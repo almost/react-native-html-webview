@@ -2,12 +2,11 @@
 // remove javascript and any other dangerous tags. Link clicks will
 // generate events but won't automatically change what is displayed.
 
-var React = require('react-native');
+var React = require('react');
 var {
   View,
-  PropTypes,
   requireNativeComponent
-} = React;
+} = require('react-native');
 
 var safeHtml = require('safe-html');
 var _ = require('underscore');
@@ -15,8 +14,8 @@ var _ = require('underscore');
 
 var _HTMLWebView = React.createClass({
   propTypes: {
-    html: PropTypes.string,
-    autoHeight: PropTypes.bool
+    html: React.PropTypes.string,
+    autoHeight: React.PropTypes.bool
   },
   render: function () {
     return <NativeHTMLWebView {...this.props}/>;
@@ -26,13 +25,13 @@ var NativeHTMLWebView = requireNativeComponent('AIBHTMLWebView', _HTMLWebView);
 
 var HTMLWebView = React.createClass({
   propTypes: {
-    html: PropTypes.string.isRequired,
-    makeSafe: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-    onLink: PropTypes.func,
+    html: React.PropTypes.string.isRequired,
+    makeSafe: React.PropTypes.oneOfType([React.PropTypes.object, React.PropTypes.bool]),
+    onLink: React.PropTypes.func,
     style: View.propTypes.style,
     // Should this view adjust its height automatically to show its
     // complete content
-    autoHeight: PropTypes.bool
+    autoHeight: React.PropTypes.bool
   },
 
   shouldComponentUpdate: function (nextProps, nextState) {
